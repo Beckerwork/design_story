@@ -1,4 +1,13 @@
-# Core
-ipython
+# Core (version copied from ml_game_story)
+ipython~=8.37.0
 # Jupyter version to match developing environment
 jupyterlab==4.5.1
+# copied from ml_game_story repo
+scikit-learn
+h5py
+ipywidgets~=8.1.5
+keras~=3.9.0
+pillow~=11.1.0
+tensorflow~=2.16.2
+ipympl
+seaborn
