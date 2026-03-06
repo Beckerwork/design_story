@@ -1,0 +1,4 @@
+# Core
+ipython
+# Jupyter version to match developing environment
+jupyterlab==4.5.1
