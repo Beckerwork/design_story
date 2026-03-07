@@ -118,16 +118,16 @@ def password3():
             if pw in richtiges_passwort:
                 display(widgets.HTML(value="""
                     <div style="text-align:center; margin-top:8px;">
-                      <p style="color:#3c763d; font-weight:bold; margin:0 0 12px 0;">
+                      <p style="color:#3c763d; font-weight:bold; font-size:large; margin:0 0 12px 0;">
                         ✅ Passwort korrekt! Zugriff gewährt.
                       </p>
                       <a href="story_game_2.ipynb" style="
                         display: inline-block;
                         padding: 10px 24px;
                         border-radius: 8px;
-                        border: 2px solid #3c763d;
-                        background-color: #3c763d;
-                        color: white;
+                        border: 3px solid #31708f;
+                        background-color: #beeaf1;
+                        color: #31708f;
                         text-decoration: none;
                         font-weight: bold;
                         box-shadow: 0 2px 6px rgba(0,0,0,0.15);
@@ -136,7 +136,7 @@ def password3():
                 """))
             else:
                 display(widgets.HTML(value="""
-                    <p style="text-align:center; color:#a94442; font-weight:bold; margin-top:8px;">
+                    <p style="text-align:center; color:#a94442; font-weight:bold; font-size:large; margin-top:8px;">
                         ❌ Falsches Passwort! Zugriff verweigert.
                     </p>
                 """))
