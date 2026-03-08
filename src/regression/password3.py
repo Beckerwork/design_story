@@ -121,7 +121,7 @@ def password3():
                       <p style="color:#3c763d; font-weight:bold; font-size:large; margin:0 0 12px 0;">
                         ✅ Passwort korrekt! Zugriff gewährt.
                       </p>
-                      <a href="story_game_2.ipynb" style="
+                      <a href="story_game_2.ipynb" target="_top" style="
                         display: inline-block;
                         padding: 10px 24px;
                         border-radius: 8px;

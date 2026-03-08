@@ -1,0 +1,67 @@
+<div class="alert alert-info" style="border-radius: 10px; position: relative; padding: 24px 24px 20px 24px; margin-top: 25px; border: 4px solid #31708f;">
+  <span style="position: absolute; top: -28px; left: 16px; background-color: #31708f; color: white; border-radius: 50%; width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center; font-size: 28px;">
+    <i class="fa fa-lock"></i>
+  </span>
+  <div style="text-align:center; margin-bottom:16px;">
+    <h3 style="color:#31708f; margin:0 0 6px 0;">🤖 Maschinenvorhersage</h3>
+    <p style="margin:0; color:#31708f; font-size:14px;">
+      Was glauben die Maschinen, wie schnell Sarah ist?<br>
+      Benutze die Gerade der Roboter, um es herauszufinden!
+    </p>
+  </div>
+  <hr style="border:none; border-top:1px solid #31708f; opacity:0.3; margin-bottom:16px;">
+  <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+    <input id="gs-input" type="text" placeholder="Zahl wie z.B. 10,50" style="border:1.5px solid #31708f; border-radius:6px; padding:7px 12px; font-size:14px; width:200px; outline:none; text-align:center;">
+    <button onclick="checkSpeed()" style="background-color:#31708f; color:white; border:none; border-radius:6px; padding:9px 28px; font-weight:bold; font-size:14px; cursor:pointer;">Überprüfen</button>
+    <p id="gs-feedback" style="margin:0; font-weight:bold; font-size:15px; text-align:center;"></p>
+    <p id="gs-hint" style="margin:0; color:#31708f; font-size:14px; text-align:center;"></p>
+  </div>
+  <div id="gs-nav-buttons" style="display:none; margin-top:16px;">
+    <div style="display:flex; justify-content:center; gap:8px; margin:8px 0;">
+      <a href="story_game_1.ipynb" style="padding:10px 24px; border-radius:8px; border:2px solid #31708f; background-color:white; color:#31708f; text-decoration:none; font-weight:bold; box-shadow:0 2px 4px rgba(0,0,0,0.1);"><i class="fa fa-arrow-left"></i> &nbsp; Zurück</a>
+      <a href="story_game_3.ipynb" style="padding:10px 24px; border-radius:8px; border:2px solid #31708f; background-color:#31708f; color:white; text-decoration:none; font-weight:bold; box-shadow:0 2px 4px rgba(0,0,0,0.1);">Weiter &nbsp;<i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<script>
+setTimeout(function() {
+
+  function checkSpeed() {
+    var korrekt = parseFloat(atob("MjIuMTE="));
+    var toleranz = 1.0;
+    var raw = document.getElementById("gs-input").value.trim().replace(",", ".");
+    var feedback = document.getElementById("gs-feedback");
+    var hint = document.getElementById("gs-hint");
+    var nav = document.getElementById("gs-nav-buttons");
+
+    var wert = parseFloat(raw);
+    if (isNaN(wert)) {
+      feedback.style.color = "#a94442";
+      feedback.textContent = "⚠️ Bitte eine Zahl eingeben (z. B. 10,50).";
+      hint.textContent = "";
+      nav.style.display = "none";
+      return;
+    }
+    if (Math.abs(wert - korrekt) <= toleranz) {
+      feedback.style.color = "#3c763d";
+      feedback.textContent = "✅ Richtig! Die Roboter schätzen Sarahs Geschwindigkeit auf ca. 22,11 km/h.";
+      hint.style.color = "#31708f";
+      hint.textContent = "Dein Wert liegt nah genug an der Vorhersage der Geraden.";
+      nav.style.display = "block";
+    } else {
+      feedback.style.color = "#a94442";
+      feedback.textContent = "❌ Nicht ganz. Schau nochmal genau auf die Gerade bei einer Körpergröße von 145 cm.";
+      hint.textContent = "";
+      nav.style.display = "none";
+    }
+  }
+
+  document.getElementById("gs-input").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") checkSpeed();
+  });
+
+  document.querySelector("button[onclick='checkSpeed()']").onclick = checkSpeed;
+
+}, 100);
+</script>
