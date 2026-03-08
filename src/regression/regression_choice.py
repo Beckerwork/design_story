@@ -21,7 +21,7 @@ def get_dependent_variable(independent_variable):
     return dependent_variable
 
 
-def quadratic_regression():
+def regression_choice():
     # Plot data
     fig, ax = plt.subplots(figsize=(7, 5))
     distances = get_independent_variable()

@@ -278,37 +278,3 @@ def zeige_lineare_regression():
     # Show plot
     plt.tight_layout()
     plt.show()
-
-    person_toggle = widgets.ToggleButtons(
-        options=['Ben', 'Sarah'],
-        style={'font_weight': 'normal'},
-        layout=widgets.Layout(width='50%')
-    )
-
-    # Ergebnisanzeige
-    results_display = widgets.HTML()
-
-    # Auswerten-Button
-    evaluate_button = widgets.Button(description='Auswerten')
-
-    def on_evaluate(change):
-        selected = person_toggle.value
-        if selected == 'Ben':
-            rgb = f'rgb({int(colors["green"][0]*255)}, {int(colors["green"][1]*255)}, {int(colors["green"][2]*255)})'
-            person_toggle.style.button_color = rgb
-            results_display.value = (
-                "<h3 style='color:green;font-size:12px;font-weight:normal;'>"
-                "Richtig! Ben sollte laufen, weil er schneller ist, als die Roboter vorhergesagt haben. Im Diagramm liegt sein Punkt deutlich oberhalb der grünen Linie. "
-                "</h3>"
-            )
-        else:
-            rgb = f'rgb({int(colors["red"][0]*255)}, {int(colors["red"][1]*255)}, {int(colors["red"][2]*255)})'
-            person_toggle.style.button_color = rgb
-            results_display.value = (
-                "<h3 style='color:red;font-size:12px;font-weight:normal;'>"
-                "Leider falsch. Versuche es nochmal.</h3>"
-            )
-
-    evaluate_button.on_click(on_evaluate)
-
-    display(VBox([person_toggle, evaluate_button, results_display]))
