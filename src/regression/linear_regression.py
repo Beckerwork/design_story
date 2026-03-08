@@ -31,7 +31,7 @@ def plot_data():
     dependent_variable = get_dependent_variable(independent_variable)
 
     # Plot height vs speed.
-    fig, ax = plt.subplots(figsize=(5, 3))
+    fig, ax = plt.subplots(figsize=(7, 5))
     ax.scatter(independent_variable, dependent_variable, color=colors['dark_blue'], label='Daten der Kinder')
 
     # Set annotations
@@ -69,7 +69,7 @@ def lineare_regression():
     dependent_variable = get_dependent_variable(independent_variable)
 
     # Plot height vs speed.
-    fig, ax = plt.subplots(figsize=(6, 3))
+    fig, ax = plt.subplots(figsize=(7, 5))
     ax.scatter(independent_variable, dependent_variable, color=colors['dark_blue'], label='Daten der Kinder')
 
     # Plot adjustable regression line.
@@ -100,7 +100,7 @@ def lineare_regression():
                                visible=False)
     # Placeholder for the annotation warning, if the manual line is too far away from a good result.
     annotation_warning = ax.annotate(
-        "Die manuelle Gerade ist noch etwas zu schlecht.\n Bitte versuche es erneut.",
+        "Die manuelle Gerade ist noch etwas zu ungenau.\n Bitte versuche es erneut.",
         xy=(125, 15),
         xytext=(125, 15.2),
         textcoords="data",
