@@ -11,3 +11,4 @@ pillow~=11.1.0
 tensorflow~=2.16.2
 ipympl
 seaborn
+voila
