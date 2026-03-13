@@ -32,6 +32,8 @@ def plot_data():
 
     # Plot height vs speed.
     fig, ax = plt.subplots(figsize=(7, 5))
+    fig.canvas.header_visible = False
+    
     ax.scatter(independent_variable, dependent_variable, color=colors['dark_blue'], label='Daten der Kinder')
 
     # Set annotations
@@ -157,6 +159,8 @@ def lineare_regression_big():
     dependent_variable = get_dependent_variable(independent_variable)
 
     fig, ax = plt.subplots(figsize=(7, 7))
+    fig.canvas.header_visible = False
+    
     ax.scatter(independent_variable, dependent_variable, color=colors['dark_blue'], label='Daten der Kinder')
 
     x_max = max(abs(independent_variable.min()), abs(independent_variable.max())) + 5
@@ -169,6 +173,8 @@ def lineare_regression_big():
     ax.spines['bottom'].set_position('zero')
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
+
+    ax.add_patch(plt.Rectangle((0, 0), 1, 1, fill=False, transform=ax.transAxes, clip_on=False, linewidth=1, edgecolor='black'))
 
     # Full-range x for drawing lines
     x_line = np.linspace(-10, x_max, 300)
@@ -197,12 +203,14 @@ def lineare_regression_big():
     ml_slope, ml_intercept, ml_predictions, ml_mse = fit_regression_line(independent_variable, dependent_variable)
     regression_line, = ax.plot(x_line, ml_slope[0] * x_line + ml_intercept, color=colors['green'], linestyle='-', label='',
                                visible=False)
+    
     annotation_warning = ax.annotate(
         "Die manuelle Gerade ist noch etwas zu ungenau.\n Bitte versuche es erneut.",
-        xy=(125, 15),
-        xytext=(125, 15.2),
-        textcoords="data",
-        bbox=dict(boxstyle="round,pad=0.3", fc=colors['brown'], ec=colors['grey'], lw=1),
+        xy=(0.5, 0.5),
+        xycoords='axes fraction',
+        ha='center', va='center',
+        color='black',
+        bbox=dict(boxstyle="round,pad=0.3", fc='#fcf8e3', ec='#8a6d3b', lw=1),
         visible=False,
         fontsize=14
     )
