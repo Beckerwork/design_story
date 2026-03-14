@@ -51,13 +51,13 @@ setTimeout(function() {
       feedback.textContent = "⚠️ Bitte erst Ben oder Sarah auswählen.";
       return;
     }
-    if (selected === "Ben") {
+    if (selected === "Sarah") {
       feedback.style.color = "#3c763d";
-      feedback.textContent = "✅ Richtig! Ben sollte laufen, weil er schneller ist, als die Roboter vorhergesagt haben. Im Diagramm liegt sein Punkt deutlich oberhalb der grünen Linie.";
+      feedback.textContent = "✅ Richtig! Sarah sollte laufen, weil sie schneller ist, als die Roboter vorhergesagt haben. Im Diagramm liegt ihr Punkt deutlich oberhalb der grünen Linie.";
       nav.style.display = "block";
     } else {
       feedback.style.color = "#a94442";
-      feedback.textContent = "❌ Leider falsch. Versuche es nochmal.";
+      feedback.textContent = "❌ Ben rennt so schnell er kann... aber nicht schnell genug. Er kann gerade so entkommen und zu euch zurück in den Serverraum flüchten.";
       nav.style.display = "none";
     }
   }

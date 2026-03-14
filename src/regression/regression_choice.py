@@ -24,6 +24,8 @@ def get_dependent_variable(independent_variable):
 def regression_choice():
     # Plot data
     fig, ax = plt.subplots(figsize=(7, 5))
+    fig.canvas.header_visible = False
+    
     distances = get_independent_variable()
     times = get_dependent_variable(distances)
     ax.scatter(distances, times, color=colors['dark_blue'], label='Datenpunkte')
@@ -132,3 +134,70 @@ def model_selection():
 
     # Anzeigen
     display(question, model_choice, evaluate_button, results_display, accordion)
+
+def regression_choice_2():
+    # Plot data
+    fig, ax = plt.subplots(figsize=(7, 5))
+    distances = get_independent_variable()
+    times = get_dependent_variable(distances)
+    ax.scatter(distances, times, color=colors['dark_blue'], label='Datenpunkte')
+
+    # Plot linear model
+    linear_slope, linear_intercept, linear_predictions, linear_mse = fit_regression_line(distances, times)
+    linear_line, = ax.plot(distances, linear_predictions, color=colors['green'], linestyle='-', label=f' ', visible=False, lw=2)
+
+    # Plot quadratic model
+    quadratic_slope, quadratic_intercept, quadratic_predictions, quadratic_mse = fit_regression_line(distances, times, power=2)
+    poly_line, = ax.plot(distances, quadratic_predictions, color=colors['orange'], linestyle='-', label=f' ', visible=False, lw=2)
+
+    # Checkbox linear model
+    checkbox_linear = widgets.Checkbox(
+        value=False,
+        description='Zeige lineares Modell',
+        disabled=False,
+        indent=False
+    )
+
+    # Checkbox quadratic model
+    checkbox_poly = widgets.Checkbox(
+        value=False,
+        description='Zeige quadratisches Modell',
+        disabled=False,
+        indent=False
+    )
+
+    def update_lines(change):
+        # Show fitted models depending on checkbox values
+        linear_line.set_visible(checkbox_linear.value)
+        poly_line.set_visible(checkbox_poly.value)
+
+        # Get current handles and labels of the legend
+        handles_lin, labels_lin = ax.get_legend_handles_labels()
+        # Modify labels of linear and quadratic line
+        if checkbox_linear.value:
+            labels_lin[1] = (f'Lineares Modell: y = {fmt_de(linear_slope[0])} * x + {fmt_de(linear_intercept)} (Fehlerwert: {fmt_de(linear_mse)})')
+        else:
+            labels_lin[1] = ''
+        if checkbox_poly.value:
+            labels_lin[2] = (f'Quadratisches Modell: y = {fmt_de(quadratic_slope[1])} * x^2 + {fmt_de(quadratic_slope[0])} * x + {fmt_de(quadratic_intercept)} (Fehlerwert: {fmt_de(quadratic_mse)})')
+        else:
+            labels_lin[2] = ''
+        # Aktualisieren der Legende und Neuzeichnen der Grafik.
+        ax.legend(handles_lin, labels_lin, loc='lower left', bbox_to_anchor=(0.0, 1.08), borderaxespad=0)
+        fig.canvas.draw()
+
+    # Add function to checkboxes
+    checkbox_linear.observe(update_lines, names='value')
+    display(checkbox_linear)
+    checkbox_poly.observe(update_lines, names='value')
+    display(checkbox_poly)
+
+    # Plot annotations
+    plt.xlabel('Strecke (m)')
+    plt.ylabel('Zeit (s)')
+    ax.set_title('Strecke vs. Zeit', pad=70)
+    ax.legend(loc='lower left', bbox_to_anchor=(0.0, 1.08), borderaxespad=0)
+    plt.subplots_adjust(top=0.72)
+    plt.grid(True)
+    fig.canvas.header_visible = False
+    plt.show()

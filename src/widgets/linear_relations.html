@@ -1,0 +1,94 @@
+<div class="alert alert-info" style="border-radius: 10px; position: relative; padding: 24px 24px 20px 24px; margin-top: 25px; border: 4px solid #31708f;">
+  <span style="position: absolute; top: -28px; left: 16px; background-color: #31708f; color: white; border-radius: 50%; width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center; font-size: 28px;">
+    <i class="fa fa-pencil"></i>
+  </span>
+  <h3 style="color:#31708f; margin: 16px 0 16px 0;">Aufgabe 3 – Lineare Zusammenhänge erkennen</h3>
+  <p style="margin: 0 0 16px 0; color:#31708f; font-size:14px;">Welche der folgenden Zusammenhänge sind linear? Setze einen Haken, wenn du glaubst, dass der Zusammenhang linear ist.</p>
+
+  <div id="lr-items" style="display: flex; flex-direction: column; gap: 8px;">
+  </div>
+
+  <div style="margin-top: 16px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+    <button id="lr-btn" style="background-color:#31708f; color:white; border:none; border-radius:6px; padding:9px 28px; font-weight:bold; font-size:14px; cursor:pointer;">Auswerten</button>
+    <span id="lr-score" style="font-size:14px; font-weight:bold; color:#31708f;"></span>
+  </div>
+</div>
+
+<script>
+setTimeout(function() {
+  var examples = [
+    { text: "Anzahl der gelesenen Seiten in einem Buch und Lesedauer", linear: true,
+      explanation: "✅ Linear. Für 50 Seiten mehr brauchst du immer gleich viel Zeit mehr." },
+    { text: "Anzahl der Knöpfe auf deinem Rucksack und die Menge an Hausaufgaben", linear: false,
+      explanation: "❌ Kein Zusammenhang. Die Knöpfe auf deinem Rucksack haben keinen Einfluss auf deine Hausaufgaben." },
+    { text: "Anzahl der Störche in einer Stadt und Anzahl der geborenen Babys", linear: false,
+      explanation: "❌ Kein Zusammenhang. Störche bringen keine Babys – auch wenn alte Geschichten das anders sehen." },
+    { text: "Anzahl der Schularbeiten und benötigte Zeit zum Korrigieren", linear: true,
+      explanation: "✅ Linear. Doppelt so viele Schularbeiten bedeuten doppelt so viel Korrekturzeit." },
+    { text: "Länge des Schulwegs und benötigte Zeit", linear: true,
+      explanation: "✅ Linear. Doppelt so weit bedeutet doppelt so lang – solange du immer gleich schnell gehst." },
+    { text: "Anzahl der Personen auf der Welt zwischen 1900 und jetzt (Abhängigkeit von der Zeit)", linear: false,
+      explanation: "❌ Nicht linear. Die Weltbevölkerung wächst immer schneller – das ist kein gleichmäßiger Anstieg." },
+    { text: "Länge deiner Haare und die Anzahl der Freunde in der Klasse", linear: false,
+      explanation: "❌ Kein Zusammenhang. Die Länge deiner Haare beeinflusst nicht die Anzahl deiner Freunde." },
+    { text: "Geld für Sammelkarten und maximale Anzahl kaufbarer Artikel (gleich teuer)", linear: true,
+      explanation: "✅ Linear. Wenn jede Karte gleich viel kostet, kaufst du für doppelt so viel Geld doppelt so viele Karten." },
+    { text: "Geschwindigkeit auf dem Fahrrad und Bremsweg", linear: false,
+      explanation: "❌ Nicht linear. Bei doppelter Geschwindigkeit ist der Bremsweg etwa viermal so lang – das ist quadratisch." },
+    { text: "Zeit zum Erledigen der Hausaufgaben (alle Aufgaben sind gleich schwer) und die Menge der erledigten Aufgaben", linear: true,
+      explanation: "✅ Linear. Doppelt so viel Zeit bedeutet doppelt so viele erledigte Aufgaben." },
+  ];
+
+  var container = document.getElementById("lr-items");
+  var checkboxes = [];
+
+  examples.forEach(function(ex, i) {
+    var id = "lr-cb-" + i;
+
+    var wrapper = document.createElement("div");
+    wrapper.style.cssText = "border: 2px solid #ccc; border-radius: 6px; padding: 8px 12px;";
+
+    var row = document.createElement("div");
+    row.style.cssText = "display: flex; align-items: center; gap: 10px;";
+
+    var cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.id = id;
+    cb.style.cssText = "cursor: pointer; width: 16px; height: 16px; flex-shrink: 0;";
+
+    var label = document.createElement("label");
+    label.htmlFor = id;
+    label.style.cssText = "cursor: pointer; font-size: 14px;";
+    label.textContent = ex.text;
+
+    var expDiv = document.createElement("div");
+    expDiv.style.cssText = "visibility: hidden; font-size: 13px; color: #333; margin-top: 6px; padding-top: 6px; border-top: 1px solid #ddd;";
+    expDiv.textContent = ex.explanation;
+
+    row.appendChild(cb);
+    row.appendChild(label);
+    wrapper.appendChild(row);
+    wrapper.appendChild(expDiv);
+    container.appendChild(wrapper);
+
+    checkboxes.push({ cb: cb, wrapper: wrapper, expDiv: expDiv, linear: ex.linear });
+  });
+
+  document.getElementById("lr-btn").onclick = function() {
+    var correct = 0;
+    checkboxes.forEach(function(item) {
+      var isCorrect = item.cb.checked === item.linear;
+      if (isCorrect) {
+        item.wrapper.style.borderColor = "#3c763d";
+        item.wrapper.style.backgroundColor = "#dff0d8";
+        correct++;
+      } else {
+        item.wrapper.style.borderColor = "#a94442";
+        item.wrapper.style.backgroundColor = "#f2dede";
+      }
+      item.expDiv.style.visibility = "visible";
+    });
+    document.getElementById("lr-score").textContent = correct + " von " + checkboxes.length + " richtig";
+  };
+}, 100);
+</script>
