@@ -44,6 +44,41 @@ def plot_data():
     plt.tight_layout()
     plt.show()
 
+def show_plot_kids():
+    independent_variable = get_independent_variable()
+    dependent_variable = get_dependent_variable(independent_variable)
+
+    fig, ax = plt.subplots(figsize=(7, 5))
+    fig.canvas.header_visible = False
+
+    ax.scatter(independent_variable, dependent_variable, color=colors['dark_blue'], label='Daten der Kinder')
+
+    named_indices = [
+        (0,  "Lena",   (-2, 6)),
+        (3,  "Tim",    (4, -8)),
+        (5,  "Jonas",  (4, 4)),
+        (8,  "Maya",   (4, 4)),
+        (10, "Finn",   (4, -8)),
+        (13, "Clara",  (-30, 6)),
+    ]
+
+    for idx, name, (dx, dy) in named_indices:
+        x = independent_variable[idx]
+        y = dependent_variable[idx]
+        ax.scatter(x, y, color=colors['orange'], zorder=5)
+        ax.annotate(name, (x, y), xytext=(dx, dy), textcoords='offset points',
+                    fontsize=9, color=colors['orange'])
+
+    ax.set_xlabel('Körpergröße (cm)')
+    ax.set_ylabel('Maximale Geschwindigkeit (km/h)')
+    ax.set_title('Größe vs. maximale Geschwindigkeit', y=1.2)
+    ax.legend(loc='upper left', bbox_to_anchor=(0.0, 1.2))
+    ax.grid(True)
+    plt.ylim([-1.5, 31.5])
+    plt.tight_layout()
+    plt.show()
+
+
 
 def mse(ground_truth, measured_values):
     """Compute mean squared error."""

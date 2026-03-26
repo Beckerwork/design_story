@@ -22,21 +22,18 @@ setTimeout(function() {
     { text: "Anzahl der Knöpfe auf deinem Rucksack und die Menge an Hausaufgaben", linear: false,
       explanation: "❌ Kein Zusammenhang. Die Knöpfe auf deinem Rucksack haben keinen Einfluss auf deine Hausaufgaben." },
     { text: "Anzahl der Störche in einer Stadt und Anzahl der geborenen Babys", linear: false,
-      explanation: "❌ Kein Zusammenhang. Störche bringen keine Babys – auch wenn alte Geschichten das anders sehen." },
+      explanation: "❌ Kein Zusammenhang. Störche bringen keine Babys, auch wenn alte Geschichten das anders sehen." },
     { text: "Anzahl der Schularbeiten und benötigte Zeit zum Korrigieren", linear: true,
       explanation: "✅ Linear. Doppelt so viele Schularbeiten bedeuten doppelt so viel Korrekturzeit." },
     { text: "Länge des Schulwegs und benötigte Zeit", linear: true,
-      explanation: "✅ Linear. Doppelt so weit bedeutet doppelt so lang – solange du immer gleich schnell gehst." },
-    { text: "Anzahl der Personen auf der Welt zwischen 1900 und jetzt (Abhängigkeit von der Zeit)", linear: false,
-      explanation: "❌ Nicht linear. Die Weltbevölkerung wächst immer schneller – das ist kein gleichmäßiger Anstieg." },
-    { text: "Länge deiner Haare und die Anzahl der Freunde in der Klasse", linear: false,
-      explanation: "❌ Kein Zusammenhang. Die Länge deiner Haare beeinflusst nicht die Anzahl deiner Freunde." },
-    { text: "Geld für Sammelkarten und maximale Anzahl kaufbarer Artikel (gleich teuer)", linear: true,
-      explanation: "✅ Linear. Wenn jede Karte gleich viel kostet, kaufst du für doppelt so viel Geld doppelt so viele Karten." },
-    { text: "Geschwindigkeit auf dem Fahrrad und Bremsweg", linear: false,
-      explanation: "❌ Nicht linear. Bei doppelter Geschwindigkeit ist der Bremsweg etwa viermal so lang – das ist quadratisch." },
+      explanation: "✅ Linear. Doppelt so weit bedeutet doppelt so lang, solange du immer gleich schnell gehst." },
+    { text: "Die Anzahl der Menschen auf der Erde im Laufe der Zeit.", linear: false,
+      explanation: "❌ Nicht linear. Die Weltbevölkerung wächst immer schneller. Das ist kein gleichmäßiger Anstieg." },
     { text: "Zeit zum Erledigen der Hausaufgaben (alle Aufgaben sind gleich schwer) und die Menge der erledigten Aufgaben", linear: true,
       explanation: "✅ Linear. Doppelt so viel Zeit bedeutet doppelt so viele erledigte Aufgaben." },
+    { text: "Geschwindigkeit auf dem Fahrrad und Bremsweg", linear: false,
+      explanation: "❌ Nicht linear. Bei doppelter Geschwindigkeit ist der Bremsweg etwa viermal so lang. Das ist ein quadratischer Zusammenhang." },
+
   ];
 
   var container = document.getElementById("lr-items");
