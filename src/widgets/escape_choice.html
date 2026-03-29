@@ -16,7 +16,7 @@
   </div>
 
   <div style="display:flex; justify-content:center; margin-bottom:12px;">
-    <button id="eval-btn" style="padding:9px 28px; border-radius:6px; border:none; background-color:#31708f; color:white; font-size:14px; font-weight:bold; cursor:pointer;">Auswerten</button>
+    <button id="eval-btn" style="padding:9px 28px; border-radius:6px; border:none; background-color:#31708f; color:white; font-size:14px; font-weight:bold; cursor:pointer;">Renn!</button>
   </div>
 
   <p id="escape-feedback" style="text-align:center; font-size:14px; font-weight:normal; margin:0 0 8px 0;"></p>
@@ -53,7 +53,7 @@ setTimeout(function() {
     }
     if (selected === "Sarah") {
       feedback.style.color = "#3c763d";
-      feedback.textContent = "✅ Richtig! Sarah sollte laufen, weil sie schneller ist, als die Roboter vorhergesagt haben. Im Diagramm liegt ihr Punkt deutlich oberhalb der grünen Linie.";
+      feedback.textContent = "✅ Richtig! Sarah sollte laufen, weil sie schneller ist, als die Roboter vorhergesagt haben. Im Diagramm liegt ihr Punkt deutlich oberhalb der grünen Regressionsgerade.";
       nav.style.display = "block";
     } else {
       feedback.style.color = "#a94442";
